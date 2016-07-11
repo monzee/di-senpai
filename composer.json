@@ -1,7 +1,7 @@
 {
     "name": "codeia/di-senpai",
 
-    "description": "DI injection framework; implements container-interop",
+    "description": "DI framework; implements container-interop",
 
     "license": "BSD-2-Clause",
 
