@@ -1,0 +1,36 @@
+{
+    "name": "codeia/di-senpai",
+    "description": "DI injection framework; implements container-interop",
+    "license": "MIT",
+    "authores": [{
+        "name": "Mon Zafra",
+        "email": "mz@codeia.ph",
+        "role": "developer"
+    }],
+
+    "autoload": {
+        "psr-4": {
+            "Codeia\\": "src"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Codeia\\": "tests"
+        }
+    },
+
+    "require": {
+        "php": ">=5.5",
+        "container-interop/container-interop": "^1.1"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
+
+    "scripts": {
+        "test": "phpunit --colors tests"
+    }
+}
+
