@@ -1,8 +1,21 @@
 {
     "name": "codeia/di-senpai",
+
     "description": "DI injection framework; implements container-interop",
+
     "license": "MIT",
-    "authores": [{
+
+    "keywords": [
+        "di", "container-interop", "service locator", "auto resolve",
+        "composable", "containers", "object graph", "component", "module",
+        "provision"
+    ],
+
+    "provide": {
+        "container-interop/container-interop": "^1.1"
+    },
+
+    "authors": [{
         "name": "Mon Zafra",
         "email": "mz@codeia.ph",
         "role": "developer"
