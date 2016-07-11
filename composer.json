@@ -3,7 +3,7 @@
 
     "description": "DI injection framework; implements container-interop",
 
-    "license": "MIT",
+    "license": "BSD-2-Clause",
 
     "keywords": [
         "di", "container-interop", "service locator", "auto resolve",
@@ -20,6 +20,11 @@
         "email": "mz@codeia.ph",
         "role": "developer"
     }],
+
+    "support": {
+        "source": "https://github.com/monzee/di-senpai",
+        "issues": "https://github.com/monzee/di-senpai/issues"
+    },
 
     "autoload": {
         "psr-4": {
