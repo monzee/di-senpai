@@ -28,6 +28,9 @@ class ContainerGraph implements ContainerInterface {
     function __construct(ContainerInterface $super, ContainerInterface $sub) {
         $this->super = $super;
         $this->sub = $sub;
+        if ($sub instanceof AttachableContainer) {
+            $sub->attach($this);
+        }
     }
 
     function get($id) {

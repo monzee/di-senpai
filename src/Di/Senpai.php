@@ -5,7 +5,7 @@ namespace Codeia\Di;
 use Interop\Container\ContainerInterface;
 
 /*
- * This file is a part of the Bloom project.
+ * This file is a part of the DI_Senpai project.
  * See the LICENSE file at the project root for the terms of use.
  */
 

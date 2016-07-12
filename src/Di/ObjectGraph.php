@@ -14,10 +14,11 @@ use Interop\Container\ContainerInterface;
  *
  * @author Mon Zafra &lt;mz@codeia.ph&gt;
  */
-class ObjectGraph implements ContainerInterface {
+class ObjectGraph implements AttachableContainer {
 
     private $component;
     private $resolving = [];
+    private $container;
 
     /**
      * @param Component $c Components are typically created through the
@@ -27,10 +28,14 @@ class ObjectGraph implements ContainerInterface {
         $this->component = $c;
     }
 
+    function attach(ContainerInterface $c) {
+        $this->container = $c;
+    }
+
     function get($id) {
         if ($this->component->provides($id)) {
             $this->ensureNoCycles($id);
-            $instance = $this->component->make($id, $this);
+            $instance = $this->component->make($id, $this->container ?: $this);
             array_pop($this->resolving);
             return $instance;
         }
