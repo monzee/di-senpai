@@ -48,7 +48,7 @@
     },
 
     "scripts": {
-        "test": "phpunit --colors tests"
+        "test": "phpunit --colors=always tests"
     }
 }
 

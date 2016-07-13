@@ -49,6 +49,16 @@ class AutoResolve implements ContainerInterface {
         return $this->source->has($id) || $this->maybeResolvable($id);
     }
 
+    /**
+     * Replaces the wrapped container with the return value of the callable.
+     *
+     * @param callable $fn Function of type
+     *                     ContainerInterface -> ContainerInterface
+     */
+    function tap(callable $fn) {
+        $this->source = $fn($this->source);
+    }
+
     private function resolve($className) {
         $this->ensureNoCycles($className);
         $cls = new \ReflectionClass($className);
