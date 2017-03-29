@@ -2,7 +2,7 @@
 
 namespace Codeia\Test;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Description of UsesContainer

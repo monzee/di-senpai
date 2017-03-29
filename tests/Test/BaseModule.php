@@ -2,7 +2,7 @@
 
 namespace Codeia\Test;
 
-use Interop\Container\ContainerInterface as Container;
+use Psr\Container\ContainerInterface as Container;
 
 /**
  * Description of BaseModule

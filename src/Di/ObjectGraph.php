@@ -2,7 +2,7 @@
 
 namespace Codeia\Di;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /*
  * This file is a part of the DI_Senpai project.

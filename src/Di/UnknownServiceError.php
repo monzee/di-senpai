@@ -3,7 +3,7 @@
 namespace Codeia\Di;
 
 use InvalidArgumentException;
-use Interop\Container\Exception\NotFoundException;
+use Psr\Container\NotFoundExceptionInterface;
 
 /*
  * This file is a part of the DI_Senpai project.
@@ -17,7 +17,7 @@ use Interop\Container\Exception\NotFoundException;
  * @author Mon Zafra &lt;mz@codeia.ph&gt;
  */
 class UnknownServiceError extends InvalidArgumentException
-    implements NotFoundException {
+    implements NotFoundExceptionInterface {
 
     /**
      * @param string $name The name of the service

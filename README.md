@@ -47,7 +47,7 @@ $provided = (new ObjectGraphBuilder(new Module))->withScoped([
 ])->build();
 $container = new AutoResolve($provided);
 ```
-> You can also use any `Interop\Container\ContainerInterface` impl, but
+> You can also use any `Psr\Container\ContainerInterface` impl, but
 > `AutoResolve` is quite useful and is what makes `Senpai` work its magic.
 > You can wrap a `ContainerInterface` in an `AutoResolve`r then use that.
 

@@ -101,8 +101,4 @@ class SenpaiTest extends TestCase {
         $this->shirou->inject($o, Senpai::NO);
     }
 
-    function test_recursive_injection() {
-        self::markTestSkipped("TODO: do i want this?");
-    }
-
 }

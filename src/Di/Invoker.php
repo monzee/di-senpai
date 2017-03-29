@@ -2,7 +2,7 @@
 
 namespace Codeia\Di;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /*
  * This file is a part of the DI_Senpai project.
@@ -18,9 +18,9 @@ class Invoker {
     }
 
     /**
-     * @param callable $fn          Function to inject and call
-     * @return mixed                The result of the function call.
-     * @throws \ReflectionException When a parameter cannot be resolved.
+     * @param callable $fn         Function to inject and call
+     * @return mixed               The result of the function call.
+     * @throws UnknownServiceError When a parameter cannot be resolved.
      */
     function __invoke(callable $fn) {
         if (is_array($fn)) {
@@ -41,9 +41,7 @@ class Invoker {
                 $type = $type->getName();
             }
             if (!$this->source->has($type)) {
-                throw new \ReflectionException(
-                    "Container cannot provide a value for `{$type}`."
-                );
+                throw new UnknownServiceError($type);
             }
             $args[] = $this->source->get($type);
         }

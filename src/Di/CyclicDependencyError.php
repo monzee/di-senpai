@@ -3,7 +3,7 @@
 namespace Codeia\Di;
 
 use RuntimeException;
-use Interop\Container\Exception\ContainerException;
+use Psr\Container\ContainerExceptionInterface;
 
 /*
  * This file is a part of the Di_Senpai project.
@@ -16,7 +16,7 @@ use Interop\Container\Exception\ContainerException;
  * @author Mon Zafra &lt;mz@codeia.ph&gt;
  */
 class CyclicDependencyError extends RuntimeException
-    implements ContainerException {
+    implements ContainerExceptionInterface {
 
     /**
      * @param array $path String names of the services being resolved when the

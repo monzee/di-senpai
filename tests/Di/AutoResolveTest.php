@@ -4,7 +4,7 @@ namespace Codeia\Di;
 
 use PHPUnit\Framework\TestCase;
 use Codeia\Test;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /*
  * This file is a part of the DI_Senpai project.
@@ -54,22 +54,22 @@ class AutoResolveTest extends TestCase {
         self::assertNotNull($a->c);
     }
 
-    /** @expectedException \Interop\Container\Exception\NotFoundException */
+    /** @expectedException \Psr\Container\NotFoundExceptionInterface */
     function test_throws_on_unloadable_class() {
         $this->sut->get('\foo\bar\baz\clzzz');
     }
 
-    /** @expectedException \Interop\Container\Exception\NotFoundException */
+    /** @expectedException \Psr\Container\NotFoundExceptionInterface */
     function test_throws_on_uninstantiable_service() {
         $this->sut->get(Test\AnInterface::class);
     }
 
-    /** @expectedException \Interop\Container\Exception\NotFoundException */
+    /** @expectedException \Psr\Container\NotFoundExceptionInterface */
     function test_throws_on_uninstantiable_dep() {
         $this->sut->get(Test\UsesAnInterface::class);
     }
 
-    /** @expectedException \Interop\Container\Exception\NotFoundException */
+    /** @expectedException \Psr\Container\NotFoundExceptionInterface */
     function test_throws_on_non_object_params() {
         $this->sut->get(Test\UsesSomething::class);
     }
