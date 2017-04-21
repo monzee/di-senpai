@@ -40,10 +40,13 @@ class Invoker {
             } else {
                 $type = $type->getName();
             }
-            if (!$this->source->has($type)) {
+            if ($type === ContainerInterface::class) {
+                $args[] = $this->source;
+            } else if ($this->source->has($type)) {
+                $args[] = $this->source->get($type);
+            } else {
                 throw new UnknownServiceError($type);
             }
-            $args[] = $this->source->get($type);
         }
         return call_user_func_array($fn, $args);
     }

@@ -15,7 +15,7 @@ use Codeia\Test;
  *
  * @author Mon Zafra &lt;mz@codeia.ph&gt;
  */
-class ObjectGraphBuilderTest extends TestCase {
+class InjectableModuleTest extends TestCase {
 
     const SCOPED = ObjectGraphBuilder::SCOPED;
 
@@ -30,7 +30,7 @@ class ObjectGraphBuilderTest extends TestCase {
      */
 
     function setup() {
-        $this->mod = new Test\BaseModule;
+        $this->mod = new Test\InjectableModule;
         $this->sut = new ObjectGraphBuilder($this->mod);
     }
 
@@ -62,50 +62,6 @@ class ObjectGraphBuilderTest extends TestCase {
         self::assertInstanceOf(Test\SubDep1::class, $a->a);
         self::assertInstanceof(Test\subdep1::class, $b->a);
         self::assertSame($a->a, $b->a);
-    }
-
-    function test_changing_unscoped_to_scoped() {
-        $c = $this->sut->withServices($this->mod->mapping)
-            ->bind('subdep1', Test\SubDep1::class, self::SCOPED)
-            ->build();
-        $a = $c->get(Test\Dep1::class);
-        $b = $c->get(Test\Dep3::class);
-        self::assertSame($a->a, $b->a);
-        $d = $c->get(Test\Dep2::class);
-        self::assertInstanceOf(Test\SubDep2::class, $a->a->a);
-        self::assertInstanceOf(Test\SubDep2::class, $d->a);
-        self::assertNotSame($a->a->a, $d->a);
-    }
-
-    function test_change_scoped_to_unscoped() {
-        $c = $this->sut->withScoped($this->mod->mapping)
-            ->bind('subdep2', Test\SubDep2::class)
-            ->build();
-        $a = $c->get(Test\Dep1::class);
-        $b = $c->get(Test\Dep3::class);
-        self::assertSame($a->a, $b->a);
-        $d = $c->get(Test\Dep2::class);
-        self::assertNotSame($a->a->a, $d->a);
-    }
-
-    function test_change_many_unscoped_to_scoped() {
-        $c = $this->sut->withServices($this->mod->mapping)
-            ->withScoped($this->mod->mapping)
-            ->build();
-        $a = $c->get(Test\Root::class);
-        $b = $c->get(Test\Root::class);
-        self::assertSame($a, $b);
-        self::assertSame($a->a->a->a, $a->b->a);
-    }
-
-    function test_change_many_scoped_to_unscoped() {
-        $c = $this->sut->withScoped($this->mod->mapping)
-            ->withServices($this->mod->mapping)
-            ->build();
-        $a = $c->get(Test\Root::class);
-        $b = $c->get(Test\Root::class);
-        self::assertNotSame($a, $b);
-        self::assertNotSame($a->a->a->a, $a->b->a);
     }
 
 }

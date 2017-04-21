@@ -46,13 +46,14 @@ class Component {
      * @throws UnknownServiceError
      */
     function make($type, ContainerInterface $context) {
+        $invoker = new Invoker($context);
         if (array_key_exists($type, $this->services)) {
             $method = $this->services[$type];
-            return $this->make->$method($context);
+            return $invoker([$this->make, $method]);
         } else if (array_key_exists($type, $this->scopedServices)) {
             $method = $this->scopedServices[$type];
             if (!array_key_exists($method, $this->scope)) {
-                $this->scope[$method] = $this->make->$method($context);
+                $this->scope[$method] = $invoker([$this->make, $method]);
             }
             return $this->scope[$method];
         } else if ($type === ContainerInterface::class) {
